@@ -1,13 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @model EmployeeInfoManagement.Models.Employee
-@section Scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+@{
+    ViewData["Title"] = "Delete Employee";
 }
-<form method="post" action="DeleteEmployee">
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this employee?");
+    }
+</script>
+<style>
+    .form-control {
+        width: 70%;
+    }
+
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+</style>
+<h2>Delete Employee</h2>
+<form method="post" action="DeleteEmployee" onsubmit="return confirmDelete()">
     <div>
         <label>ID: </label>
         <input type="number" class="form-control" asp-for="EmployeeId" readonly />

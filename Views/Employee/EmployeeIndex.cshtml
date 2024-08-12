@@ -1,19 +1,33 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @model List<EmployeeInfoManagement.Models.Employee>;
-@section Scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+@{
+    ViewData["Title"] = "Employee";
 }
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    table a {
+        border: 1px grey solid;
+        border-radius: 5px;
+        padding: 5px;
+        color: #000;
+        text-decoration: none;
+    }
+</style>
 <form>
     <button asp-controller="Employee" asp-action="InsertEmployee">Add Employee </button>
     <h1> Employee Information</h1>
-    <table border="1">
-        <thead bgcolor="blue">
-            <tr>
-                <th>Employee ID</th>
+    <table>
+        <thead>
+            <tr>                
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -23,19 +37,18 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody bgcolor="pink">
+        <tbody>
             @if (Model != null && Model.Any())
             {
                 @foreach (var employee in Model)
                 {
-                    <tr>
-                        <td>@employee.EmployeeId</td>
+                    <tr>                       
                         <td>@employee.FirstName</td>
                         <td>@employee.LastName</td>
                         <td>@employee.Email</td>
                         <td>@employee.Phone</td>
                         <td>@employee.Department</td>
-                        <td>@employee.HireDate</td>
+                        <td>@employee.HireDate.ToShortDateString()</td>
                         <td>
                             <a asp-controller="Employee" asp-action="EditEmployee" asp-route-id="@employee.EmployeeId">Edit</a>
                             <a asp-controller="Employee" asp-action="DeleteEmployee" asp-route-id="@employee.EmployeeId">Delete</a>
